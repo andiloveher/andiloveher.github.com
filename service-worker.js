@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/andiloveher/reactblog/precache-manifest.6e44466bd34e85a5294d2659a46078bc.js"
+  "/reactblog/precache-manifest.77d0fe0914a787fa5016b2ec679ca7b9.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/andiloveher/reactblog/index.html", {
+workbox.routing.registerNavigationRoute("/reactblog/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
