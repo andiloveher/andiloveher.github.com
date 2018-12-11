@@ -1,15 +1,15 @@
 {
-  "main.css": "/andiloveher/andiloveher.github.com/static/css/main.d699453e.chunk.css",
-  "main.js": "/andiloveher/andiloveher.github.com/static/js/main.3cc7a77e.chunk.js",
-  "main.js.map": "/andiloveher/andiloveher.github.com/static/js/main.3cc7a77e.chunk.js.map",
-  "static/css/1.c723ab93.chunk.css": "/andiloveher/andiloveher.github.com/static/css/1.c723ab93.chunk.css",
-  "static/js/1.c713213e.chunk.js": "/andiloveher/andiloveher.github.com/static/js/1.c713213e.chunk.js",
-  "static/js/1.c713213e.chunk.js.map": "/andiloveher/andiloveher.github.com/static/js/1.c713213e.chunk.js.map",
-  "runtime~main.js": "/andiloveher/andiloveher.github.com/static/js/runtime~main.10b62b71.js",
-  "runtime~main.js.map": "/andiloveher/andiloveher.github.com/static/js/runtime~main.10b62b71.js.map",
-  "static/css/1.c723ab93.chunk.css.map": "/andiloveher/andiloveher.github.com/static/css/1.c723ab93.chunk.css.map",
-  "static/css/main.d699453e.chunk.css.map": "/andiloveher/andiloveher.github.com/static/css/main.d699453e.chunk.css.map",
-  "index.html": "/andiloveher/andiloveher.github.com/index.html",
-  "precache-manifest.5a796be381579775e763c1a9485facc5.js": "/andiloveher/andiloveher.github.com/precache-manifest.5a796be381579775e763c1a9485facc5.js",
-  "service-worker.js": "/andiloveher/andiloveher.github.com/service-worker.js"
+  "main.css": "/andiloveher/reactblog/static/css/main.d699453e.chunk.css",
+  "main.js": "/andiloveher/reactblog/static/js/main.f1a39d27.chunk.js",
+  "main.js.map": "/andiloveher/reactblog/static/js/main.f1a39d27.chunk.js.map",
+  "static/css/1.c723ab93.chunk.css": "/andiloveher/reactblog/static/css/1.c723ab93.chunk.css",
+  "static/js/1.d4d3aeb0.chunk.js": "/andiloveher/reactblog/static/js/1.d4d3aeb0.chunk.js",
+  "static/js/1.d4d3aeb0.chunk.js.map": "/andiloveher/reactblog/static/js/1.d4d3aeb0.chunk.js.map",
+  "runtime~main.js": "/andiloveher/reactblog/static/js/runtime~main.9d065f65.js",
+  "runtime~main.js.map": "/andiloveher/reactblog/static/js/runtime~main.9d065f65.js.map",
+  "static/css/1.c723ab93.chunk.css.map": "/andiloveher/reactblog/static/css/1.c723ab93.chunk.css.map",
+  "static/css/main.d699453e.chunk.css.map": "/andiloveher/reactblog/static/css/main.d699453e.chunk.css.map",
+  "index.html": "/andiloveher/reactblog/index.html",
+  "precache-manifest.6e44466bd34e85a5294d2659a46078bc.js": "/andiloveher/reactblog/precache-manifest.6e44466bd34e85a5294d2659a46078bc.js",
+  "service-worker.js": "/andiloveher/reactblog/service-worker.js"
 }
