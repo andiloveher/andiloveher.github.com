@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>三大框架（详） - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2019-06-01T08:23:53.000Z">June 1, 2019</time><h1 class="post__title"><a href="/2019/06/01/三大框架（详）/">三大框架（详）</a></h1><div class="post__main echo"><p><strong>现代框架解决的最本质问题保持UI与状态的同步。</strong></p>
+<blockquote>
+<p>这里面只有Angular是一个框架而不是一个库，因为它提供了关于如何构建应用程序的强大意见，以及开箱即用的更多功能。它给开发者一整套解决方案的框架，相对于React和Vue不需要搭配其他库，就可以构建出一个大型项目。</p>
+</blockquote>
+<h4 id="Vue与React"><a href="#Vue与React" class="headerlink" title="Vue与React"></a>Vue与React</h4><ul>
+<li>相似<ul>
+<li>Virtual DOM</li>
+<li>提供响应式和组件化的视图组件</li>
+<li>将注意力集中在核心库，而将其他功能如路由和状态管理交给其他相关的库</li>
+</ul>
+</li>
+<li>区别<ul>
+<li>在React应用中，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件树。如果要避免不必要的子组件渲染，可采取shouldComponentUpdate或者PureComponent提升性能。在Vue应用中，组件的依赖是在渲染过程中自动追踪的，所以能精确知道哪个子组件需要被重新渲染，开发者不需要考虑组件是否需要重新渲染之类的优化。</li>
+<li>在React中一切都是javascript，在Vue中有自带的渲染函数，也支持JSX，Vue官方推荐使用模版渲染视图。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h4><blockquote>
+<p>Angular从一开始就带有很明显的工程化血统，齐全的cli命令，背靠TypeScript，涉及模块、服务以及指令等概念，使用后端的依赖注入思想，特有模板语法。官网上，专门有一章是讨论架构，开发规范都给你准备好了，还等什么呢。</p>
+<ul>
+<li></li>
+</ul>
+</blockquote>
+<h4 id="应该怎么选"><a href="#应该怎么选" class="headerlink" title="应该怎么选"></a>应该怎么选</h4><blockquote>
+<ul>
+<li>如果你在 Google 工作：Angular</li>
+<li>如果你喜欢 TypeScript：Angular（或 React）</li>
+<li>如果你喜欢面向对象编程（OOP）：Angular</li>
+<li>如果你需要指导，结构和援助：Angular</li>
+<li>如果你在 Facebook 工作：React</li>
+<li>如果你喜欢灵活性：React</li>
+<li>如果你喜欢庞大生态系统：React</li>
+<li>如果你喜欢在几十个软件包中选择：React</li>
+<li>如果你喜欢 JS &amp;“一切都是 Javascript 的方法”：React</li>
+<li>如果你喜欢真正干净的代码：Vue</li>
+<li>如果你想要最简单的学习曲线：Vue</li>
+<li>如果你想要最轻量级的框架：Vue</li>
+<li>如果你想在一个文件中分离关系：Vue</li>
+<li>如果你一个人工作或者有一个小团队：Vue（或 React）</li>
+<li>如果你的应用程序变得非常大：Angular（或 React）</li>
+<li>如果你想用 react-native 构建一个应用程序：React</li>
+<li>如果你想有很多跟你一样的开发者：Angular（或 React）</li>
+<li>如果你与设计师合作并需要干净的 HTML 文件：Angular （或 Vue）</li>
+<li>如果你喜欢 Vue 但是害怕有限的生态系统：React</li>
+<li>如果你不能决定，先学习 React 和 Vue，然后学习 Angular</li>
+<li>都9102年了，小孩子才选框架，成年人只看场景。</li>
+</ul>
+</blockquote>
+</div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2019 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
