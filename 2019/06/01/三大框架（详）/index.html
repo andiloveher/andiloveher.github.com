@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>三大框架（详） - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2019-06-01T08:23:53.000Z">June 1, 2019</time><h1 class="post__title"><a href="/2019/06/01/三大框架（详）/">三大框架（详）</a></h1><div class="post__main echo"><p><strong>现代框架解决的最本质问题保持UI与状态的同步。</strong></p>
 <blockquote>
-<p>这里面只有Angular是一个框架而不是一个库，因为它提供了关于如何构建应用程序的强大意见，以及开箱即用的更多功能。它给开发者一整套解决方案的框架，相对于React和Vue不需要搭配其他库，就可以构建出一个大型项目。</p>
+<p>Angular与React和Vue不同的是，它不只是针对视图层的一个库，它提供的是一个完整的解决方案和生态，以及开箱即用的更多功能。它本身内置了组件化方案、模块化方案、测试、表单验证、路由、国际化和HTTP服务等，这些东西我们开发者不用再去纠结怎么选择。</p>
 </blockquote>
 <h4 id="Vue与React"><a href="#Vue与React" class="headerlink" title="Vue与React"></a>Vue与React</h4><ul>
 <li>相似<ul>
@@ -17,10 +17,36 @@
 </ul>
 <h4 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h4><blockquote>
 <p>Angular从一开始就带有很明显的工程化血统，齐全的cli命令，背靠TypeScript，涉及模块、服务以及指令等概念，使用后端的依赖注入思想，特有模板语法。官网上，专门有一章是讨论架构，开发规范都给你准备好了，还等什么呢。</p>
-<ul>
-<li></li>
-</ul>
 </blockquote>
+<ul>
+<li><p>Angular CLI是一个命令行界面工具，它可以创建项目、添加文件以及执行一大堆开发任务，比如测试、打包和发布。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @angular/cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模块化与组件化</p>
+<blockquote>
+<p>Angular 应用是模块化的，并且 Angular 有自己的模块系统，它被称为NgModules。应用由一个或者多个模块组成，并且必须要有一个<strong>根模块</strong>，我们通常命名为AppModule，每个模块都会有一个叫@NgModule的装饰器函数，它接收一个用来描述模块属性的元数据对象，我们在这个对象属性上配置我们应用所需的组件、路由、指令、管道、服务等。然后Angular会引导根模块来启动应用，有如下代码</p>
+</blockquote>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; platformBrowserDynamic &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser-dynamic'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppModule &#125; <span class="keyword">from</span> <span class="string">'./app/app.module'</span>;</span><br><span class="line"></span><br><span class="line">platformBrowserDynamic().bootstrapModule(AppModule);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125;      <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports:      [ BrowserModule ],</span><br><span class="line">  providers:    [ Logger ],</span><br><span class="line">  declarations: [ AppComponent ],</span><br><span class="line">  exports:      [ AppComponent ],</span><br><span class="line">  bootstrap:    [ AppComponent ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>NgModule 为其中的组件提供了一个编译上下文环境。根模块总会有一个根组件，并在引导期间创建它。 但是，任何模块都能包含任意数量的其它组件，这些组件可以通过路由器加载，也可以通过模板创建。那些属于这个 NgModule 的组件会共享同一个编译上下文环境。</p>
+</blockquote>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">  selector:    <span class="string">'app-component'</span>,</span><br><span class="line">  templateUrl: <span class="string">'./app-component.html'</span>,</span><br><span class="line">  providers:  [ HeroService ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  heroes: Hero[];</span><br><span class="line">  selectedHero: Hero;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(private service: HeroService) &#123; &#125;</span><br><span class="line">	</span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="keyword">this</span>.heroes = <span class="keyword">this</span>.service.getHeroes();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  selectHero(hero: Hero) &#123; <span class="keyword">this</span>.selectedHero = hero; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>&gt; Angular 把组件和服务区分开，以提高模块性和复用性。 通过把组件中和视图有关的功能与其他类型的处理分离开，你可以让组件类更加精简、高效。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HeroService</span> </span>&#123;</span><br><span class="line">  private heroes: Hero[] = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(</span><br><span class="line">    private backend: BackendService,</span><br><span class="line">    private logger: Logger) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  getHeroes() &#123;</span><br><span class="line">    <span class="keyword">this</span>.backend.getAll(Hero).then( <span class="function">(<span class="params">heroes: Hero[]</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.logger.log(<span class="string">`Fetched <span class="subst">$&#123;heroes.length&#125;</span> heroes.`</span>);</span><br><span class="line">      <span class="keyword">this</span>.heroes.push(...heroes); <span class="comment">// fill cache</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.heroes;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ul>
+<li><p>DI 被融入 Angular 框架中，用于在任何地方给新建的组件提供服务或所需的其它东西。 组件是服务的消费者，也就是说，你可以把一个服务注入到组件中，让组件类得以访问该服务类。</p>
+</li>
+<li><p>生命周期钩子</p>
+</li>
+<li><p>可观察对象和事件处理 - rxjs</p>
+</li>
+<li><p>Router / HTTP / Forms / i18n …</p>
+</li>
+</ul>
 <h4 id="应该怎么选"><a href="#应该怎么选" class="headerlink" title="应该怎么选"></a>应该怎么选</h4><blockquote>
 <ul>
 <li>如果你在 Google 工作：Angular</li>
