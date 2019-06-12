@@ -2,6 +2,18 @@
 <blockquote>
 <p>Angular与React和Vue不同的是，它不只是针对视图层的一个库，它提供的是一个完整的解决方案和生态，以及开箱即用的更多功能。它本身内置了组件化方案、模块化方案、测试、表单验证、路由、国际化和HTTP服务等，这些东西我们开发者不用再去纠结怎么选择。</p>
 </blockquote>
+<ul>
+<li>react: 数据变化之后，用户通过 setState 主动通知框架更新视图</li>
+<li>vue：数据变化之后，框架通过对原生对象和数组类型变更方法的劫持自动发现更新的部分，刷新视图，用户没有手动过程</li>
+<li>angular: 1.x 数据变化之后，通过 $digest 主动通知框架更新视图（框架劫持了大部分异步行为，自动做这个事情）2 以后版本，changeDetection 允许两种模式，自动和手动自动：基于 zone.js，原理与 1.x 的 $digest 相同手动：数据变化之后，用户手动调用 cd，通知框架更新视图另外，可以通过内置的 rxjs 的 observable，接管一切异步行为，并在订阅中去 cd</li>
+<li>从另外一个角度看，凡是要让数据的变化能够映射到视图上，也只有两种途径：<ul>
+<li>react: diff dom，但是不 diff 数据</li>
+<li>vue: diff 数据（其实不能叫 diff，而是通过对更改的劫持，自动获得了 diff），也 diff dom（其实可以不 diff，它这个机制，其实用不到 vdom）</li>
+<li>angular: diff 数据，但是不 diff domcycle: diff dom，但不 diff 数据</li>
+<li>所以，我们从机制上可以看出，几家各自不同。凡是拿到了数据的 diff 的，就可以不要 diff dom，所以这种也就可以不要shouldComponentUpdate，因为框架自己都知道数据有没有变了，还不知道该不该刷新组件？只有那些 diff dom 的才需要干这个事。</li>
+</ul>
+</li>
+</ul>
 <h4 id="Vue与React"><a href="#Vue与React" class="headerlink" title="Vue与React"></a>Vue与React</h4><ul>
 <li>相似<ul>
 <li>Virtual DOM</li>
