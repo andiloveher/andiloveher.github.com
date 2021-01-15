@@ -12,12 +12,26 @@
 <li>2   域名分片/多路复用 解决头部阻塞，二进制分帧，头部压缩 使用首部表来跟踪和存储键值对，服务端推送</li>
 <li>3   基于udp</li>
 </ul>
+<h5 id="HTTP特点"><a href="#HTTP特点" class="headerlink" title="HTTP特点"></a>HTTP特点</h5><ul>
+<li>无状态</li>
+<li>明文传输</li>
+<li>队头阻塞 原因开启长链接，公用同一个tcp</li>
+</ul>
+<h5 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h5><ul>
+<li>Content-Type 数据格式 表单 form-data / x-www-form-urlencoded</li>
+<li>Content-Encoding 压缩方式</li>
+<li>Content-Length / Transfer-Encoding 内容长度</li>
+</ul>
 <h5 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h5><ul>
 <li>作用域 Path / Domain</li>
 <li>时间 Expires / Max-Age</li>
-<li>安全 HttpOnly / SameSite</li>
+<li>安全 HttpOnly / SameSite / Secure</li>
 </ul>
-<h5 id="强制缓存、协商缓存"><a href="#强制缓存、协商缓存" class="headerlink" title="强制缓存、协商缓存"></a>强制缓存、协商缓存</h5><h5 id="正向、反向代理"><a href="#正向、反向代理" class="headerlink" title="正向、反向代理"></a>正向、反向代理</h5><ul>
+<h5 id="强制缓存、协商缓存"><a href="#强制缓存、协商缓存" class="headerlink" title="强制缓存、协商缓存"></a>强制缓存、协商缓存</h5><ul>
+<li>Cache-Control 验证强缓存是否可用</li>
+<li>If-Modified-Since / If-None-Match</li>
+</ul>
+<h5 id="正向、反向代理"><a href="#正向、反向代理" class="headerlink" title="正向、反向代理"></a>正向、反向代理</h5><ul>
 <li>负载均衡</li>
 <li>代理缓存</li>
 <li>X-Forward-For / X-Real-IP</li>
@@ -27,8 +41,38 @@
 <li>握手过程</li>
 <li>签名验证</li>
 </ul>
-<h5 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h5><ul>
+<h5 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h5><ul>
+<li>流 已建立的连接上的双向字节流</li>
+<li>消息 一系列的数据帧</li>
+<li>通信的最小单位，包含帧首部</li>
+</ul>
+<blockquote>
+<p>http2.0通信都在一个连接上完成，这个连接可以承载任意数据量的双向数据流。每个数据流以消息的形式发送，消息由一个或多个帧组成。所有的帧都采用二进制编码，所有的首部数据都会被压缩。</p>
+</blockquote>
+<ul>
+<li>多路复用</li>
+<li>请求优先级</li>
+<li>服务端推送</li>
+<li>首部压缩</li>
+</ul>
+<h5 id="TCP的三次握手和四次挥手"><a href="#TCP的三次握手和四次挥手" class="headerlink" title="TCP的三次握手和四次挥手"></a>TCP的三次握手和四次挥手</h5><h5 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h5><ul>
 <li>同源策略</li>
 <li>cors / jsonp / nginx</li>
+<li>简单请求 / 非简单请求</li>
+</ul>
+<h5 id="XSS和CSRF"><a href="#XSS和CSRF" class="headerlink" title="XSS和CSRF"></a>XSS和CSRF</h5><ul>
+<li><p>XSS 跨站脚本攻击</p>
+<ul>
+<li>获取cookie等隐私</li>
+<li>恶意代码存储</li>
+<li>url 动态注入脚本</li>
+</ul>
+</li>
+<li><p>CSRF 跨站点请求伪造</p>
+<ul>
+<li>SameSite</li>
+<li>Referer</li>
+</ul>
+</li>
 </ul>
 </div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
