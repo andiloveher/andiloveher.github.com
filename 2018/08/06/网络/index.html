@@ -39,8 +39,17 @@
 <h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><ul>
 <li>对称加密、非对称加密</li>
 <li>握手过程</li>
-<li>签名验证</li>
+<li>签名验证 ca数字证书保证服务器省份，防止dns篡改</li>
 </ul>
+<blockquote>
+<ol>
+<li>client 发送 client_random和加密方法列表</li>
+<li>server 返回 server_random、加密方法和公钥</li>
+<li>client生成一个pre_random，利用公钥加密，传给服务器</li>
+<li>server利用私钥解密，获取pre_random</li>
+<li>利用对称加密混合三个随机数生成密钥，进行通信</li>
+</ol>
+</blockquote>
 <h5 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h5><ul>
 <li>流 已建立的连接上的双向字节流</li>
 <li>消息 一系列的数据帧</li>
@@ -55,7 +64,14 @@
 <li>服务端推送</li>
 <li>首部压缩</li>
 </ul>
-<h5 id="TCP的三次握手和四次挥手"><a href="#TCP的三次握手和四次挥手" class="headerlink" title="TCP的三次握手和四次挥手"></a>TCP的三次握手和四次挥手</h5><h5 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h5><ul>
+<h5 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h5><ul>
+<li>TCP面向连接，可靠的，基于字节流的传输层协议；UDP面向无连接的基于数据报的传输层协议；</li>
+<li>TCP的三次握手和四次挥手</li>
+<li>流量控制 滑动窗口</li>
+<li>拥塞窗口 发送窗口控制</li>
+<li>TFO syn cookie</li>
+</ul>
+<h5 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h5><ul>
 <li>同源策略</li>
 <li>cors / jsonp / nginx</li>
 <li>简单请求 / 非简单请求</li>
