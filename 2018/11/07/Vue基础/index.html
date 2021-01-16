@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Vue - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-11-07T06:14:26.000Z">November 7, 2018</time><h1 class="post__title"><a href="/2018/11/07/Vue基础/">Vue</a></h1><div class="post__main echo"><p>目的：供多个项目共享组件</p>
+<ul>
+<li>Vue.use()</li>
+<li>Component.install</li>
+<li>props</li>
+<li>events</li>
+<li>slot</li>
+</ul>
+<h5 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h5><blockquote>
+<p>在下次dom更新循环之后执行延迟回调，可用于获取更新后的dom状态</p>
+</blockquote>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><ul>
+<li>init<ul>
+<li>initLifecycle / event</li>
+<li>callHook: beforeCreated 实例创建</li>
+<li>initInjection / initState</li>
+<li>created 创建完成，属性已绑定，但还未生成真实dom</li>
+<li>元素挂载</li>
+<li>是否有template 生成render function</li>
+<li>beforeMount</li>
+<li>执行render function，生成真实dom，并替换到dom tree</li>
+<li>mounted 组件挂载</li>
+</ul>
+</li>
+<li>update<ul>
+<li>执行diff算法</li>
+<li>beforeUpdate</li>
+<li>updated</li>
+</ul>
+</li>
+<li>actived / deactivated(keep-alive): 不销毁，缓存，组件激活与失活</li>
+<li>destroy</li>
+</ul>
+<hr>
+<p><img src="https://md-1258006551.cos.ap-chengdu.myqcloud.com/vue%E6%9C%BA%E5%88%B6.jpg" alt="生命周期"></p>
+<ul>
+<li>在new Vue()之后，vue会调用_init函数进行初始化，它会初始化生命周期、事件、props、methods、data、computed与watch等，通过Object.defineProperty设置setter与getter函数，用来实现<strong>响应式</strong>以及<strong>依赖收集</strong>。然后调用$mount挂载组件，如果是运行时编译，不存在render function 但是存在template情况，需要进行编译。</li>
+<li>compile编译可以分成parse、optimize、generate三个阶段，最终得到render function。<ul>
+<li>parse会用正则表达式解析模版中的指令、class、style等数据，形成AST。</li>
+<li>optimize的主要作用是标记static静态节点，diff算法会直接跳过静态节点。</li>
+<li>generte是将AST转化成render function字符串。</li>
+</ul>
+</li>
+<li>当render function被渲染的时候，因为会读取所需对象的值，所以会触发getter函数进行依赖收集。在修改对象的值，会触发对应的setter、getter通知之前依赖收集得到的dep中的每一个watcher。</li>
+</ul>
+<h5 id="vdom"><a href="#vdom" class="headerlink" title="vdom"></a>vdom</h5><ul>
+<li>创建dom</li>
+<li>树的diff，同层对比</li>
+<li>渲染差异</li>
+</ul>
+<h5 id="proxy-defineProperty"><a href="#proxy-defineProperty" class="headerlink" title="proxy / defineProperty"></a>proxy / defineProperty</h5><p>*</p>
+<h5 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h5><h5 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h5></div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

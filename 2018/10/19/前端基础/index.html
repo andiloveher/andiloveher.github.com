@@ -11,25 +11,92 @@
 </ul>
 <hr>
 <h4 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h4><ul>
-<li>常规属性</li>
-<li>动画</li>
-<li>盒子模型</li>
-<li><p>响应式布局</p>
+<li>常规属性<ul>
+<li>border-radius</li>
+<li>box-shadow</li>
+<li>linear-gradient</li>
+<li>@font-face</li>
+<li>@media</li>
+<li>…</li>
+</ul>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" title="from ruanyifeng" target="_blank" rel="noopener">flex语法</a></p>
+<li>盒子模型<ul>
+<li>box-sizing<ul>
+<li>content-box</li>
+<li>border-box</li>
+<li>pading-box</li>
+<li>margin-box</li>
+</ul>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2018/10/flexbox-form.html" title="from ruanyifeng" target="_blank" rel="noopener">简单的flex表单</a></p>
+</ul>
 </li>
-<li><p>移动适配方案</p>
-<ul>
+<li>响应式布局</li>
+<li>BFC<ul>
+<li>独立的渲染区域，让处于BFC内部的元素与外部的元素相互隔离，使内外定位元素相互不影响</li>
+<li>触发条件<ul>
+<li>position absolute / fixed</li>
+<li>display inline-block / table</li>
+<li>float</li>
+<li>overflow !== visible</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>margin 重叠</li>
+<li>高度塌陷</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>层叠 z-index<ul>
+<li>position</li>
+<li>flex</li>
+<li>transform</li>
+<li>will-change</li>
+</ul>
+</li>
+<li>居中布局<ul>
+<li>position</li>
+<li>flex</li>
+<li>transform</li>
+<li>line-height</li>
+<li>table</li>
+<li>margin</li>
+</ul>
+</li>
+<li>优先级<ul>
+<li>!important &gt; inline &gt; #id &gt; .class &gt; tag &gt; * &gt; 继承 &gt; default</li>
+<li>选择器从右往左解析</li>
+</ul>
+</li>
+<li>link 与 @import<ul>
+<li>@import 只能用于css</li>
+<li>@import 等页面加载完才会加载</li>
+<li>link 可以js动态加载</li>
+</ul>
+</li>
+<li>css预处理器<ul>
+<li>嵌套</li>
+<li>变量</li>
+<li>循环</li>
+<li>条件</li>
+<li>复用</li>
+</ul>
+</li>
+<li>动画<ul>
+<li>transition</li>
+<li>animation / keyframes</li>
+</ul>
+</li>
+<li>移动适配方案<ul>
 <li>百分比</li>
 <li>rem</li>
 <li>vw vh</li>
 <li>媒体查询</li>
 </ul>
 </li>
-<li><p><a href="https://www.cnblogs.com/wangzhichao/p/7987346.html" target="_blank" rel="noopener">grid语法</a></p>
-<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" title="from ruanyifeng" target="_blank" rel="noopener">flex语法</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2018/10/flexbox-form.html" title="from ruanyifeng" target="_blank" rel="noopener">简单的flex表单</a></li>
+<li><a href="https://www.cnblogs.com/wangzhichao/p/7987346.html" target="_blank" rel="noopener">grid语法</a><ul>
 <li>grid container</li>
 <li>grid item</li>
 </ul>
@@ -37,16 +104,131 @@
 </ul>
 <hr>
 <h4 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h4><ul>
-<li>ES5</li>
-<li>DOM</li>
-<li>BOM</li>
-<li>设计模式</li>
-<li>闭包</li>
-<li>作用域</li>
+<li>原型 / 原型链</li>
+<li>执行上下文<ul>
+<li>变量对象</li>
+<li>作用域链</li>
 <li>this</li>
-<li>eventLoop</li>
-<li>浏览器渲染</li>
-<li>回流重构</li>
+<li>代码的执行过程<ul>
+<li>创建全局上下文</li>
+<li>自上而下push到栈</li>
+<li>执行完成推出栈</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>new 执行过程<ul>
+<li>生成一个新对象obj</li>
+<li>链接原型 obj.<strong>proto</strong> = Con.prototype</li>
+<li>绑定this</li>
+<li>返回</li>
+</ul>
+</li>
+<li>继承<ul>
+<li>寄生</li>
+<li>class extend</li>
+</ul>
+</li>
+<li>隐式转换</li>
+<li>DOM</li>
+<li>BOM<ul>
+<li>跨标签页通信（共享的中间介质）<ul>
+<li>window.open / postMessage</li>
+<li>同域下localStorage</li>
+<li>cookie</li>
+<li>服务端</li>
+</ul>
+</li>
+<li>浏览器架构<ul>
+<li>用户界面</li>
+<li>主进程</li>
+<li>内核<ul>
+<li>渲染引擎</li>
+<li>js引擎<ul>
+<li>执行栈</li>
+</ul>
+</li>
+<li>事件触发线程<ul>
+<li>消息队列<ul>
+<li>宏任务</li>
+<li>微任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>网络异步线程</li>
+<li>定时器线程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从输入url到展示过程<ul>
+<li>dns解析</li>
+<li>tcp三次握手</li>
+<li>发送请求</li>
+<li>服务器响应</li>
+<li>浏览器渲染<ul>
+<li>html -&gt; dom</li>
+<li>css  -&gt; cssdom</li>
+<li>render tree</li>
+<li>layout</li>
+<li>gpu 绘制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>设计模式</li>
+<li>闭包<ul>
+<li>父函数被销毁的情况下，返回出的子函数仍然包含着对父函数变量对象的引用 （堆内存）</li>
+</ul>
+</li>
+<li>作用域<ul>
+<li>块级作用域 / 函数作用域</li>
+<li>上下文中的变量及作用范围</li>
+</ul>
+</li>
+<li>this指向<ul>
+<li>全局指向window / undefined</li>
+<li>new 指向返回的实例对象</li>
+<li>方法调用</li>
+<li>call / apply / bind</li>
+</ul>
+</li>
+<li>eventLoop<ul>
+<li>宏任务</li>
+<li>微任务</li>
+<li>nodejs<ul>
+<li>timer 阶段</li>
+<li>I/O 异常回调阶段</li>
+<li>空闲、预备状态(第2阶段结束，poll 未触发之前)</li>
+<li>poll 阶段</li>
+<li>check 阶段</li>
+<li>关闭事件的回调阶段</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内存泄漏<ul>
+<li>意外的全局变量</li>
+<li>定时器</li>
+<li>事件监听</li>
+<li>闭包</li>
+<li>dom引用 dom元素被删除</li>
+</ul>
+</li>
+<li>垃圾回收<ul>
+<li>新生代 Scavenge 算法主要就是解决内存碎片的问题 from <-> to</-></li>
+<li>老生代 标记-清除 增量标记 跟React Fiber的思路相似</li>
+</ul>
+</li>
+<li>v8执行js<ul>
+<li>词法/语法分析生成ast</li>
+<li>将ast转换成字节码</li>
+<li>由解释器逐行执行字节码，遇到热点代码启动编译器进行编译，生成对应的机器码, 以优化执行效率</li>
+</ul>
+</li>
 <li>…</li>
 </ul>
 <hr>
@@ -58,7 +240,14 @@
 <li>性能优化</li>
 </ul>
 <hr>
-<h4 id="hybrid-小程序"><a href="#hybrid-小程序" class="headerlink" title="hybrid / 小程序"></a>hybrid / 小程序</h4><hr>
+<h4 id="hybrid-小程序"><a href="#hybrid-小程序" class="headerlink" title="hybrid / 小程序"></a>hybrid / 小程序</h4><ul>
+<li>webview<ul>
+<li>JSBridge 双向通信</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h4 id="工程化方面"><a href="#工程化方面" class="headerlink" title="工程化方面"></a>工程化方面</h4><ul>
 <li>webpack</li>
 <li>git</li>
@@ -91,4 +280,23 @@
 </li>
 </ul>
 <hr>
+<h4 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h4><ul>
+<li><p>排序算法</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爬楼梯</p>
+<ul>
+<li>动态规划</li>
+<li>递归</li>
+</ul>
+</li>
+<li>天平找次<ul>
+<li>三等分法</li>
+</ul>
+</li>
+<li>拿苹果保证最后拿到<ul>
+<li>倒推</li>
+</ul>
+</li>
+</ul>
 <h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h4></div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
