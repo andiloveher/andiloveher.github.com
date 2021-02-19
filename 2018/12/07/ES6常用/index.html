@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>ES6 - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-12-07T02:06:26.000Z">December 7, 2018</time><h1 class="post__title"><a href="/2018/12/07/ES6常用/">ES6</a></h1><div class="post__main echo"><h5 id="let-const"><a href="#let-const" class="headerlink" title="let / const"></a>let / const</h5><ul>
+<li>块级作用域</li>
+<li>不存在变量提升</li>
+<li>不允许重复声明</li>
+</ul>
+<h5 id="变量的结构赋值"><a href="#变量的结构赋值" class="headerlink" title="变量的结构赋值"></a>变量的结构赋值</h5><ul>
+<li>按照一定的模式匹配，从对象中提取值，赋值给变量</li>
+</ul>
+<h5 id="字符串扩展"><a href="#字符串扩展" class="headerlink" title="字符串扩展"></a>字符串扩展</h5><ul>
+<li>加强了对Unicode的支持</li>
+<li>模版字符串</li>
+<li>includes / startsWith / trimStart / matchAll / replaceAll</li>
+</ul>
+<h5 id="正则的扩展"><a href="#正则的扩展" class="headerlink" title="正则的扩展"></a>正则的扩展</h5><h5 id="数值的扩展"><a href="#数值的扩展" class="headerlink" title="数值的扩展"></a>数值的扩展</h5><ul>
+<li>Number.isFinite() / Number.isNaN() / Number.isInteger()</li>
+<li>BigInt 数据类型</li>
+</ul>
+<h5 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h5><ul>
+<li>箭头函数</li>
+<li>函数默认值 / rest参数</li>
+<li>尾调用优化</li>
+</ul>
+<h5 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h5><ul>
+<li>扩展运算符 …</li>
+<li>Array.from / Array.of / includes / flat</li>
+<li>sort排序的稳定性</li>
+</ul>
+<h5 id="对象的扩展"><a href="#对象的扩展" class="headerlink" title="对象的扩展"></a>对象的扩展</h5><ul>
+<li>链式判断运算符 / null 判断运算符</li>
+<li>super 关键字，指向当前对象的原型</li>
+<li>扩展运算符 …</li>
+<li>Object.is / Object.assign</li>
+</ul>
+<h5 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h5><h5 id="Set-Map"><a href="#Set-Map" class="headerlink" title="Set / Map"></a>Set / Map</h5><ul>
+<li>Set 类似于数组，但是成员的值都是唯一的</li>
+<li>Map 键值对的集合</li>
+</ul>
+<h5 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h5><h5 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h5><h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><h5 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h5><blockquote>
+<p>proxy可以理解为在目标对象之前架设一层拦截，对外界访问的数据进行过滤和改写。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">	get: <span class="function"><span class="keyword">function</span>(<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">`getting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">	&#125;,</span><br><span class="line">	set: <span class="function"><span class="keyword">function</span>(<span class="params">target, key, value, receiver</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">`setting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, key, value, receiver);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h5 id="Object-defineProperty-与-Proxy"><a href="#Object-defineProperty-与-Proxy" class="headerlink" title="Object.defineProperty 与 Proxy"></a>Object.defineProperty 与 Proxy</h5><ul>
+<li>Object.defineProperty本身是可以监控到数组下标的变化的，具体可参<a href="https://segmentfault.com/a/1190000015783546" target="_blank" rel="noopener">vue为什么不检测数组的变动</a></li>
+<li>Proxy 可以劫持整个对象，并返回一个新对象</li>
+</ul>
+<h5 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h5><blockquote>
+<p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。Generator返回的是一个指针对象。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="keyword">yield</span> x + <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> g = gen(<span class="number">1</span>);</span><br><span class="line">g.next(); <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line">g.next(<span class="number">1</span>); <span class="comment">// &#123; value: 1, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+<p>Thunk 如何自动化异步流程</p>
+<ul>
+<li>函数传值调用还是传名调用</li>
+<li><p>传名调用的实现，将参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做Thunk 函数。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> m*<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line">f(x+<span class="number">5</span>)</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> thunk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+<span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">thunk</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> thunk * <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>javascript 语言是传值调用，它的Thunk含义有所不同。javascript 中 Thunk替换的不是表达式，而是多参数函数，将其替换成单参数版本。</p>
+</li>
+<li><p>yield命令用于将函数执行权交出，就需要另一种方法将执行权还给函数，这种方法就是Thunk。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// generator函数自动执行器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// fn传入的generator函数，执行第一步</span></span><br><span class="line">  <span class="keyword">var</span> gen = fn()</span><br><span class="line">  <span class="comment">// 递归实现next</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = gen.next(data)</span><br><span class="line">    <span class="keyword">if</span>(result.done) <span class="keyword">return</span>;</span><br><span class="line">    result.value(next)</span><br><span class="line">  &#125;</span><br><span class="line">  next()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>co 函数库，返回一个 Promise 对象</p>
+</li>
+<li>终极解决 <strong>async</strong>/<strong>await</strong> 语法糖</li>
+</ul>
+</div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
