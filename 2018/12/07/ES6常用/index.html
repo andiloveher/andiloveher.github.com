@@ -35,17 +35,19 @@
 <li>Set 类似于数组，但是成员的值都是唯一的</li>
 <li>Map 键值对的集合</li>
 </ul>
-<h5 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h5><h5 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h5><h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><h5 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h5><blockquote>
-<p>proxy可以理解为在目标对象之前架设一层拦截，对外界访问的数据进行过滤和改写。</p>
+<h5 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h5><h5 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h5><h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><blockquote>
+<p>Proxy</p>
 </blockquote>
+<p>proxy可以理解为在目标对象之前架设一层拦截，对外界访问的数据进行过滤和改写。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">	get: <span class="function"><span class="keyword">function</span>(<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">`getting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">	&#125;,</span><br><span class="line">	set: <span class="function"><span class="keyword">function</span>(<span class="params">target, key, value, receiver</span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">`setting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, key, value, receiver);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h5 id="Object-defineProperty-与-Proxy"><a href="#Object-defineProperty-与-Proxy" class="headerlink" title="Object.defineProperty 与 Proxy"></a>Object.defineProperty 与 Proxy</h5><ul>
 <li>Object.defineProperty本身是可以监控到数组下标的变化的，具体可参<a href="https://segmentfault.com/a/1190000015783546" target="_blank" rel="noopener">vue为什么不检测数组的变动</a></li>
 <li>Proxy 可以劫持整个对象，并返回一个新对象</li>
 </ul>
-<h5 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h5><blockquote>
-<p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。Generator返回的是一个指针对象。</p>
+<blockquote>
+<p>Generator</p>
 </blockquote>
+<p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。Generator返回的是一个指针对象。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="keyword">yield</span> x + <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> g = gen(<span class="number">1</span>);</span><br><span class="line">g.next(); <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line">g.next(<span class="number">1</span>); <span class="comment">// &#123; value: 1, done: true &#125;</span></span><br></pre></td></tr></table></figure>
 <p>Thunk 如何自动化异步流程</p>
 <ul>

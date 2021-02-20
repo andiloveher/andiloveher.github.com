@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>前端性能优化方向 - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2019-11-20T06:07:41.000Z">November 20, 2019</time><h1 class="post__title"><a href="/2019/11/20/前端性能优化方向/">前端性能优化方向</a></h1><div class="post__main echo"><p><img src="/img/performanceOpt.png" alt=""></p>
+<h5 id="网络传输性能优化"><a href="#网络传输性能优化" class="headerlink" title="网络传输性能优化"></a>网络传输性能优化</h5><ul>
+<li>浏览器在等到用户请求后：重定向 –&gt; 拉取用户缓存 –&gt; DNS查询 –&gt; 建立TCP –&gt; 发起请求 –&gt; 接收响应 –&gt; 处理返回的数据</li>
+<li>强制缓存和协商缓存</li>
+<li>资源的打包合并压缩</li>
+<li>图片资源的优化</li>
+<li>CDN</li>
+</ul>
+<h5 id="页面渲染优化"><a href="#页面渲染优化" class="headerlink" title="页面渲染优化"></a>页面渲染优化</h5><p><img src="https://md-1258006551.cos.ap-chengdu.myqcloud.com/broswer-render.png" alt=""></p>
+<ul>
+<li>渲染引擎 html/css/js 解释器</li>
+<li>DOM渲染与GPU硬件加速</li>
+<li>降低重排和重绘时间</li>
+</ul>
+<h5 id="js阻塞优化"><a href="#js阻塞优化" class="headerlink" title="js阻塞优化"></a>js阻塞优化</h5><h5 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h5><p>webpack-bundle-analyzer分析工具</p>
+<h6 id="资源问题"><a href="#资源问题" class="headerlink" title="资源问题"></a>资源问题</h6><ul>
+<li>SplitChunkPlugin（minChunks: 2 重复打包问题）</li>
+<li>路由懒加载（/<em> webpackChunkName: “OTA” </em>/）</li>
+<li>组件库按需加载（babel-import-plugin）</li>
+<li>gzip（compression-webpack-plugin）</li>
+<li>ExtractTextPlugin（css拆分）</li>
+<li>externals（cdn）</li>
+</ul>
+<h6 id="构建问题"><a href="#构建问题" class="headerlink" title="构建问题"></a>构建问题</h6></div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>

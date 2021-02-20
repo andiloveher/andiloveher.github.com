@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Webpack - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2019-09-26T01:49:15.000Z">September 26, 2019</time><h1 class="post__title"><a href="/2019/09/26/webpack相关/">Webpack</a></h1><div class="post__main echo"><blockquote>
+<p>构建流程</p>
+</blockquote>
+<blockquote>
+<p>初始化参数<br>解析webpack配置参数，形成最后的配置结果</p>
+</blockquote>
+<blockquote>
+<p>开始编译<br>通过参数初始化compiler对象，注册所有配置插件，插件监听webpack构建生命周期的事件节点，执行对象的run方法开始编译</p>
+</blockquote>
+<blockquote>
+<p>确定入口，编译模块<br>从entry入口开始，根据文件类型调用相应loader对文件进行转换，解析文件构建ast，找出依赖，递归</p>
+</blockquote>
+<blockquote>
+<p>完成模块编译并输出<br>在构建生命周期中有一系列插件在做合适的时机做合适事情，webpack 在运行过程中会广播事件，插件只需要监听它所关心的事件</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>loader</p>
+<ol>
+<li>用于对模块源代码进行转换</li>
+</ol>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// style-loader</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">source</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">    const styleElement = document.createElement('style');</span></span><br><span class="line"><span class="string">    styleElement.innerHTML = <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(source)&#125;</span></span></span><br><span class="line"><span class="string">    document.head.appendChild(styleElement);</span></span><br><span class="line"><span class="string">  `</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>plugin</p>
+<ol>
+<li>tapable 是一个类似于 nodejs 的 EventEmitter 的库, 主要是控制钩子函数的发布与订阅</li>
+<li>监听webpack广播的事件，并通过compiler对象去操作webpack</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>优化 webpack 的构建性能</p>
+<ol>
+<li>缩小 loaders 作用范围</li>
+<li>使用 DllPlugin 将不频繁更新的代码单独编译</li>
+<li>减少编译的整体大小</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>HMR</p>
+<ol>
+<li>在webpack的watch模式下，监听到文件修改，根据配置文件对模块重新编译打包</li>
+<li>webpack-dev-middleware 调用webpack暴露的api对代码变动进行监控</li>
+<li>变化后会通知浏览器端对应用进行live reload，并将打包后的文件输出到内存中</li>
+<li>通过websocket长连接，将webpack编译打包的各个阶段的状态信息告知浏览器</li>
+<li>server根据client传给它的信息以及dev-server的配置决定是刷新还是模块热更新</li>
+<li>client向server发送ajax请求，server返回一个json，包含所有要更新的模块hash值，获取到更新列表后，该模块再次通过jsonp请求，获取最新模块代码</li>
+<li>HotModulePlugin将会对新旧模块进行对比</li>
+<li>当HMR失败后，回退到live reload</li>
+</ol>
+</blockquote>
+</div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
