@@ -3,17 +3,15 @@
 <h5 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h5><blockquote>
 <p>作为一个前端工程师，当我们拿到一个新电脑时，你可能要安装：Node、NVM、NPM、NRM、YARN、CNPM、Gulp、Webpack、Webpack-cli、Browserify、Sass、Less、Babel、React-Native-Cli 甚至还有 pm2、forever 等等。再加上如果你是一个 Windows 用户，那么『天将降大任』就来了。更别说为了兼容多个项目，要装 Node 4.x 的同时，还要装 NPM 3.x版本，并且还要考虑webpack以及各种loader兼容问题；也不要提，在大局域网里，sass被『墙』逼得要死。随着前端的发展，开发环境越来越复杂，这种种问题都会时常遇到，而且这些问题不是所有人都可以很快解决的，尤其对于刚入行的新人。</p>
 </blockquote>
-<p><img src="/img/dockerbg.jpeg" alt=""></p>
+<p><img src="/img/node_modules.jpeg" alt=""></p>
 <h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ol>
 <li>依赖的环境很多，本地搭建一套环境成本越来越高，花大量时间解决环境部署的一些问题。 </li>
 <li><p>环境的版本差异（常见的 Node 版本）及 OS 的差异（例如 Node Sass 依赖 OS ruby），第三方库或工具在windows下也有各自的坑，严重的甚至不能正常运行，而且windows不同的版本、相同版本的不同发行版、相同发行版的不同补丁版本都有各种各样的坑。</p>
 </li>
 <li><p>莫名其妙node_modules里面版本库出问题，只得删除重装。</p>
 </li>
-</ol>
-<p><img src="/img/node_modules.jpeg" alt=""></p>
-<ol start="4">
-<li>新同事、新电脑、新项目环境需要重新部署。</li>
+<li><p>新同事、新电脑、新项目环境需要重新部署。</p>
+</li>
 </ol>
 <p><img src="/img/node-docker.jpeg" alt=""></p>
 <blockquote>
@@ -48,7 +46,7 @@
 </li>
 </ol>
 <p><img src="/img/docker.svg" alt=""></p>
-<h5 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h5><p>docker <em>exec / run / stop / restart / rm / export / import / top / ps / logs </em>  [镜像名]</p>
+<h5 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h5><p>docker <em>build / pull / exec / run / stop / restart / rm / export / import / top / ps / logs </em>  [镜像名]</p>
 <p>-i: 交互式操作</p>
 <p>-t: 终端</p>
 <p>-p: 端口</p>
