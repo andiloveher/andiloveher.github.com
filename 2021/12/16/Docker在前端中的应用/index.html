@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Docker在前端中的应用 - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2021-12-16T13:27:32.000Z">December 16, 2021</time><h1 class="post__title"><a href="/2021/12/16/Docker在前端中的应用/">Docker在前端中的应用</a></h1><div class="post__main echo"><p><img src="/img/dockerbg.jpeg" alt=""></p>
+<p>本次分享主要结合前端在开发环境上遇到的问题，来分享一些 Docker在前端的应用。不涉及一些像Docker环境的安装和命令以及k8s。</p>
+<h5 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h5><blockquote>
+<p>作为一个前端工程师，当我们拿到一个新电脑时，你可能要安装：Node、NVM、NPM、NRM、YARN、CNPM、Gulp、Webpack、Webpack-cli、Browserify、Sass、Less、Babel、React-Native-Cli 甚至还有 pm2、forever 等等。再加上如果你是一个 Windows 用户，那么『天将降大任』就来了。更别说为了兼容多个项目，要装 Node 4.x 的同时，还要装 NPM 3.x版本，并且还要考虑webpack以及各种loader兼容问题；也不要提，在大局域网里，sass被『墙』逼得要死。随着前端的发展，开发环境越来越复杂，这种种问题都会时常遇到，而且这些问题不是所有人都可以很快解决的，尤其对于刚入行的新人。</p>
+</blockquote>
+<p><img src="/img/dockerbg.jpeg" alt=""></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ol>
+<li>依赖的环境很多，本地搭建一套环境成本越来越高，花大量时间解决环境部署的一些问题。 </li>
+<li><p>环境的版本差异（常见的 Node 版本）及 OS 的差异（例如 Node Sass 依赖 OS ruby），第三方库或工具在windows下也有各自的坑，严重的甚至不能正常运行，而且windows不同的版本、相同版本的不同发行版、相同发行版的不同补丁版本都有各种各样的坑。</p>
+</li>
+<li><p>莫名其妙node_modules里面版本库出问题，只得删除重装。</p>
+</li>
+</ol>
+<p><img src="/img/node_modules.jpeg" alt=""></p>
+<ol start="4">
+<li>新同事、新电脑、新项目环境需要重新部署。</li>
+</ol>
+<p><img src="/img/node-docker.jpeg" alt=""></p>
+<blockquote>
+<h5 id="Docker-是世界领先的软件容器平台，所以想要搞懂Docker的概念我们必须先从容器开始说起。"><a href="#Docker-是世界领先的软件容器平台，所以想要搞懂Docker的概念我们必须先从容器开始说起。" class="headerlink" title="Docker 是世界领先的软件容器平台，所以想要搞懂Docker的概念我们必须先从容器开始说起。"></a>Docker 是世界领先的软件容器平台，所以想要搞懂Docker的概念我们必须先从容器开始说起。</h5></blockquote>
+<ol>
+<li><p>容器是一个应用层抽象，用于将代码和依赖资源打包在一起。多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行。与虚拟机相比，容器占用的空间较少（容器镜像大小通常只有几十兆），瞬间就能完成启动。</p>
+<p> 虚拟机 (VM) 是一个物理硬件层抽象，用于将一台服务器变成多台服务器。 管理程序允许多个 VM 在一台机器上运行。每个VM都包含一整套操作系统、一个或多个应用、必要的二进制文件和库资源，因此 占用大量空间，启动也十分缓慢。</p>
+</li>
+<li><p>容器是虚拟化的操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。<br> 但是也没有必要完全否定虚拟机技术，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而容器通常用于隔离不同的应用，例如前端，后端以及数据库。</p>
+</li>
+</ol>
+<p><img src="/img/docker-vm.jpeg" alt=""></p>
+<blockquote>
+<p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核 的Control Group，Namespace，以及AUFS类的UnionFS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。Docke最初实现是基于LXC，后基于Go Libcontainer包.</p>
+<p>Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。</p>
+</blockquote>
+<h5 id="docker三个重要概念"><a href="#docker三个重要概念" class="headerlink" title="docker三个重要概念"></a>docker三个重要概念</h5><ol>
+<li><p>#####image 镜像 - 一个特殊的文件系统</p>
+<blockquote>
+<p>除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。分层存储的架构，利用 Union FS的技术，镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。　</p>
+</blockquote>
+</li>
+<li><p>#####container 容器 - 镜像运行时的实例</p>
+<blockquote>
+<p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等 。</p>
+</blockquote>
+</li>
+<li><p>#####repository 仓库 - 集中存放镜像文件的地方</p>
+<blockquote>
+<p> 镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/img/docker.svg" alt=""></p>
+<h5 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h5><p>docker <em>exec / run / stop / restart / rm / export / import / top / ps / logs </em>  [镜像名]</p>
+<p>-i: 交互式操作</p>
+<p>-t: 终端</p>
+<p>-p: 端口</p>
+<p>-v: 挂载</p>
+<p>…</p>
+<h5 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h5></div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
