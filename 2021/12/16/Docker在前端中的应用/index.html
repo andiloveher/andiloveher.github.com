@@ -28,28 +28,20 @@
 <p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核 的Control Group，Namespace，以及AUFS类的UnionFS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。Docke最初实现是基于LXC，后基于Go Libcontainer包.</p>
 <p>Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。</p>
 </blockquote>
-<h5 id="docker三个重要概念"><a href="#docker三个重要概念" class="headerlink" title="docker三个重要概念"></a>docker三个重要概念</h5><ol>
-<li><p>#####image 镜像 - 一个特殊的文件系统</p>
-<blockquote>
-<p>除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。分层存储的架构，利用 Union FS的技术，镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。　</p>
-</blockquote>
-</li>
-<li><p>#####container 容器 - 镜像运行时的实例</p>
-<blockquote>
-<p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等 。</p>
-</blockquote>
-</li>
-<li><p>#####repository 仓库 - 集中存放镜像文件的地方</p>
-<blockquote>
-<p> 镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。</p>
-</blockquote>
-</li>
-</ol>
-<p><img src="/img/docker.svg" alt=""></p>
+<h5 id="docker三个重要概念"><a href="#docker三个重要概念" class="headerlink" title="docker三个重要概念"></a>docker三个重要概念</h5><p>#####image 镜像 - 一个特殊的文件系统</p>
+<pre><code>&gt; 除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。分层存储的架构，利用 Union FS的技术，镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。　
+</code></pre><p>#####container 容器 - 镜像运行时的实例</p>
+<pre><code>&gt; 镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等 。
+</code></pre><p>#####repository 仓库 - 集中存放镜像文件的地方</p>
+<pre><code>&gt;  镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。
+</code></pre><p><img src="/img/docker.svg" alt=""></p>
 <h5 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h5><p>docker <em>build / pull / exec / run / stop / restart / rm / export / import / top / ps / logs </em>  [镜像名]</p>
 <p>-i: 交互式操作</p>
 <p>-t: 终端</p>
 <p>-p: 端口</p>
 <p>-v: 挂载</p>
 <p>…</p>
-<h5 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h5></div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
+<h4 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h4><blockquote>
+<p>Talk is cheap. Show me the code.</p>
+</blockquote>
+</div></header></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2021 unclee</div></footer><script src="/js/scroller.js"></script><script src="/js/main.js"></script></body></html>
