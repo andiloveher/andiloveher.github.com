@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Docker在前端中的应用 - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2021-12-16T13:27:32.000Z">December 16, 2021</time><h1 class="post__title"><a href="/2021/12/16/Docker在前端中的应用/">Docker在前端中的应用</a></h1><div class="post__main echo"><p><img src="/img/dockerbg.jpeg" alt=""></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="unclee"><meta name="description" content="来嘛，互相伤害"><link rel="alternative" href="/atom.xml" title="匹夫王T" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Docker在前端中的应用 - 匹夫王T</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css"><!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js"></script><script src="/js/fancybox/jquery.fancybox.min.js"></script></head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">匹夫王T</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2021-12-16T13:27:32.000Z">December 16, 2021</time><h1 class="post__title"><a href="/2021/12/16/Docker在前端中的应用/">Docker在前端中的应用</a></h1><div class="post__main echo"><p><img src="/img/bigfrontend.jpeg" alt=""></p>
 <p>本次分享主要结合前端在开发环境上遇到的问题，来分享一些 Docker在前端的应用。不涉及一些像Docker环境的安装和命令以及k8s。</p>
 <h5 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h5><blockquote>
 <p>作为一个前端工程师，当我们拿到一个新电脑时，你可能要安装：Node、NVM、NPM、NRM、YARN、CNPM、Gulp、Webpack、Webpack-cli、Browserify、Sass、Less、Babel、React-Native-Cli 甚至还有 pm2、forever 等等。再加上如果你是一个 Windows 用户，那么『天将降大任』就来了。更别说为了兼容多个项目，要装 Node 4.x 的同时，还要装 NPM 3.x版本，并且还要考虑webpack以及各种loader兼容问题；也不要提，在大局域网里，sass被『墙』逼得要死。随着前端的发展，开发环境越来越复杂，这种种问题都会时常遇到，而且这些问题不是所有人都可以很快解决的，尤其对于刚入行的新人。</p>
@@ -28,19 +28,58 @@
 <p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核 的Control Group，Namespace，以及AUFS类的UnionFS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。 由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。Docke最初实现是基于LXC，后基于Go Libcontainer包.</p>
 <p>Docker 能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。</p>
 </blockquote>
-<h5 id="docker三个重要概念"><a href="#docker三个重要概念" class="headerlink" title="docker三个重要概念"></a>docker三个重要概念</h5><p>#####image 镜像 - 一个特殊的文件系统</p>
-<pre><code>&gt; 除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。分层存储的架构，利用 Union FS的技术，镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。　
-</code></pre><p>#####container 容器 - 镜像运行时的实例</p>
-<pre><code>&gt; 镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等 。
-</code></pre><p>#####repository 仓库 - 集中存放镜像文件的地方</p>
-<pre><code>&gt;  镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。
-</code></pre><p><img src="/img/docker.svg" alt=""></p>
-<h5 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h5><p>docker <em>build / pull / exec / run / stop / restart / rm / export / import / top / ps / logs </em>  [镜像名]</p>
+<p><img src="/img/dockerbg.jpeg" alt=""></p>
+<h5 id="docker三个重要概念"><a href="#docker三个重要概念" class="headerlink" title="docker三个重要概念"></a>docker三个重要概念</h5><h5 id="image-镜像-一个特殊的文件系统"><a href="#image-镜像-一个特殊的文件系统" class="headerlink" title="image 镜像 - 一个特殊的文件系统"></a>image 镜像 - 一个特殊的文件系统</h5><ul>
+<li>除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。分层存储的架构，利用 Union FS的技术，镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。　</li>
+</ul>
+<h5 id="container-容器-镜像运行时的实例"><a href="#container-容器-镜像运行时的实例" class="headerlink" title="container 容器 - 镜像运行时的实例"></a>container 容器 - 镜像运行时的实例</h5><ul>
+<li>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的 类 和 实例 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等 。</li>
+</ul>
+<h5 id="repository-仓库-集中存放镜像文件的地方"><a href="#repository-仓库-集中存放镜像文件的地方" class="headerlink" title="repository 仓库 - 集中存放镜像文件的地方"></a>repository 仓库 - 集中存放镜像文件的地方</h5><ul>
+<li>镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。</li>
+</ul>
+<p><img src="/img/docker.svg" alt=""></p>
+<h5 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h5><p><a href="https://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">Docker 命令</a></p>
 <p>-i: 交互式操作</p>
 <p>-t: 终端</p>
 <p>-p: 端口</p>
 <p>-v: 挂载</p>
+<p>-c: shell</p>
 <p>…</p>
+<h5 id="Docker-资源"><a href="#Docker-资源" class="headerlink" title="Docker 资源"></a>Docker 资源</h5><ul>
+<li><p>Docker 官方主页: <a href="https://www.docker.com" target="_blank" rel="noopener">https://www.docker.com</a></p>
+</li>
+<li><p>Docker 官方博客: <a href="https://blog.docker.com/" target="_blank" rel="noopener">https://blog.docker.com/</a></p>
+</li>
+<li><p>Docker 官方文档: <a href="https://docs.docker.com/" target="_blank" rel="noopener">https://docs.docker.com/</a></p>
+</li>
+<li><p>Docker Store: <a href="https://store.docker.com" target="_blank" rel="noopener">https://store.docker.com</a></p>
+</li>
+<li><p>Docker Cloud: <a href="https://cloud.docker.com" target="_blank" rel="noopener">https://cloud.docker.com</a></p>
+</li>
+<li><p>Docker Hub: <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a></p>
+</li>
+<li><p>Docker 的源代码仓库: <a href="https://github.com/moby/moby" target="_blank" rel="noopener">https://github.com/moby/moby</a></p>
+</li>
+<li><p>Docker 发布版本历史: <a href="https://docs.docker.com/release-notes/" target="_blank" rel="noopener">https://docs.docker.com/release-notes/</a></p>
+</li>
+<li><p>Docker 常见问题: <a href="https://docs.docker.com/engine/faq/" target="_blank" rel="noopener">https://docs.docker.com/engine/faq/</a></p>
+</li>
+<li><p>Docker 远端应用 API: <a href="https://docs.docker.com/develop/sdk/" target="_blank" rel="noopener">https://docs.docker.com/develop/sdk/</a></p>
+</li>
+</ul>
+<h5 id="Docker-国内镜像"><a href="#Docker-国内镜像" class="headerlink" title="Docker 国内镜像"></a>Docker 国内镜像</h5><ul>
+<li><p>阿里云的加速器：<a href="https://help.aliyun.com/document_detail/60750.html" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/60750.html</a></p>
+</li>
+<li><p>网易加速器：<a href="http://hub-mirror.c.163.com" target="_blank" rel="noopener">http://hub-mirror.c.163.com</a></p>
+</li>
+<li><p>官方中国加速器：<a href="https://registry.docker-cn.com" target="_blank" rel="noopener">https://registry.docker-cn.com</a></p>
+</li>
+<li><p>ustc 的镜像：<a href="https://docker.mirrors.ustc.edu.cn" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a></p>
+</li>
+<li><p>daocloud：<a href="https://www.daocloud.io/mirror#accelerator-doc（注册后使用）" target="_blank" rel="noopener">https://www.daocloud.io/mirror#accelerator-doc（注册后使用）</a></p>
+</li>
+</ul>
 <h4 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h4><blockquote>
 <p>Talk is cheap. Show me the code.</p>
 </blockquote>
